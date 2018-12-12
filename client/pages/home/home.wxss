@@ -17,3 +17,16 @@
 .rec-text {
   margin-left: 20rpx;
 }
+
+.footer {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 96rpx;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}

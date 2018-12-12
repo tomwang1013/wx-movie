@@ -7,7 +7,7 @@
 }
 
 page {
-  background-color: #e0e0e0;
+  background-color: rgb(247,249,251);
   font-size: 32rpx;
 }
 
@@ -15,4 +15,8 @@ page {
   width: 64rpx;
   height: 64rpx;
   border-radius: 50%;
+}
+
+.btn-text {
+  color: rgb(143, 166, 184);
 }

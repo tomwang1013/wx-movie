@@ -1,8 +1,17 @@
 <view class='container'>
   <image src='{{comment.movieImg}}' class='movie-img'></image>
   <view class='movie-title'>{{comment.movieTitle}}</view>
-  <view class='recomment'>
+  <navigator class='recomment' 
+             url='/pages/comment-detail/comment-detail?id={{comment.id}}'>
     <image class='avatar' src='{{comment.avatar}}'></image>
     <view class='rec-text'>{{comment.userName}}给你推荐了一部电影</view>
+  </navigator>
+</view>
+<view class='footer'>
+  <view class='btn-text'>
+    <text>热门</text>
+  </view>
+  <view class='btn-text'>
+    <text>我的</text>
   </view>
 </view>

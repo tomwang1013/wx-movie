@@ -1,2 +1,10 @@
-<!--client/pages/comment-detail/comment-detail.wxml-->
-<text>client/pages/comment-detail/comment-detail.wxml</text>
+<view class='main'>
+  <image class='movie-img' src='{{comment.movieImg}}'></image>
+  <view class='movie-title'>{{comment.movieTitle}}</view>
+  <view class='comment'>
+    <view class='user-title'>
+      <image src='{{comment.avatar}}'></image>
+    </view>
+    <view class='content'>{{comment.content}}</view>
+  </view>
+</view>

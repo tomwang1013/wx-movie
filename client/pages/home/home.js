@@ -8,6 +8,7 @@ Page({
    */
   data: {
     comment: {
+      id: 1,
       movieImg: 'https://movie-1256681158.cos.ap-chengdu.myqcloud.com/images/p2517753454.jpg',
       movieTitle: '复仇者联盟3：无限战争',
       avatar: 'https://wx.qlogo.cn/mmopen/vi_32/PetqTaAkoQ9zAjknVnBMEnIhgSQuE8gPDxCrHsCgaypZ76kv8kQd7ViaoooqVwCdhLtLh3DUqJqTzQSVmU7N0CQ/132',
@@ -19,7 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // TODO get comment & movie from server
   },
 
   /**
