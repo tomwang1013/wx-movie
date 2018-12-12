@@ -1,11 +1,18 @@
-// client/pages/home/home.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const util = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    comment: {
+      movieImg: 'https://movie-1256681158.cos.ap-chengdu.myqcloud.com/images/p2517753454.jpg',
+      movieTitle: '复仇者联盟3：无限战争',
+      avatar: 'https://wx.qlogo.cn/mmopen/vi_32/PetqTaAkoQ9zAjknVnBMEnIhgSQuE8gPDxCrHsCgaypZ76kv8kQd7ViaoooqVwCdhLtLh3DUqJqTzQSVmU7N0CQ/132',
+      userName: '王先统'
+    }
   },
 
   /**

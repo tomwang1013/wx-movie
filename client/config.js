@@ -5,7 +5,7 @@
 let useLocal = false;
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://veaawhmc.qcloud.la';
+var host = 'https://rgqt3qkv.qcloud.la';
 
 if (useLocal) {
   host = 'http://localhost:5757'

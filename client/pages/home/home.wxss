@@ -1,1 +1,19 @@
-/* client/pages/home/home.wxss */
+.movie-img {
+  width: 540rpx;
+  height: 800rpx;
+  margin: 30rpx 0;
+}
+
+.movie-title {
+  margin: 30rpx;
+}
+
+.recomment {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.rec-text {
+  margin-left: 20rpx;
+}

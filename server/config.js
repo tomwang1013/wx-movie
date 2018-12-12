@@ -5,10 +5,10 @@ const CONF = {
   rootPathname: '',
 
   // 微信小程序 App ID
-  appId: 'wxeca1b1addbd4197c',
+  appId: 'wx22880cdc3d8d56ab',
 
   // 微信小程序 App Secret
-  appSecret: '1f3af3919aced226a172e5beb263e1bd',
+  appSecret: '4d2c400abcfa8b7e5aa4083b9da58bcc',
 
   // 是否使用腾讯云代理登录小程序
   useQcloudLogin: false,
@@ -23,7 +23,7 @@ const CONF = {
     port: 3306,
     user: 'root',
     db: 'cAuth',
-    pass: 'wxeca1b1addbd4197c',
+    pass: 'wx22880cdc3d8d56ab',
     char: 'utf8mb4'
   },
 
@@ -40,9 +40,9 @@ const CONF = {
   },
 
   // 上传图片需要用
-  qcloudAppId: '1256680925',
-  qcloudSecretId: 'AKIDBB2e07KpOhldHgnrkOnxwhEVcbMsjD7m',
-  qcloudSecretKey: 'YvAAvRlriJj27wWw73jEbjdIl00kJlzy',
+  qcloudAppId: '1256681158',
+  qcloudSecretId: 'AKIDueCXdWHZjKkwsZsGEwToukW4NQEqt2lE',
+  qcloudSecretKey: 'MSL3d2CRUL0QeVCeqthGdnmY6OULxKSP',
 
   // 微信登录态有效期
   wxLoginExpires: 7200,
@@ -50,7 +50,7 @@ const CONF = {
 }
 
 if (useLocal) {
-  Object.assign(CONF, {
+  Object.assign(CONF, { 
     serverHost: 'localhost',
     tunnelServerUrl: '',
     tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',

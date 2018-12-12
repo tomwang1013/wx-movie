@@ -4,4 +4,15 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-} 
+}
+
+page {
+  background-color: #e0e0e0;
+  font-size: 32rpx;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}
