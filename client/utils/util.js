@@ -39,4 +39,17 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+// 将query对象转化为URL中的查询参数
+function stringifyQuery(query) {
+  const items = [];
+  Object.keys(query).forEach(key => {
+    items.push(`${key}=${query[key]}`);
+  })
+
+  return items.join('&');
+}
+
+module.exports = { 
+  formatTime, showBusy, showSuccess, showModel, 
+  stringifyQuery
+}

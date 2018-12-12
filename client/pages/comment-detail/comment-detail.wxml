@@ -1,10 +1,10 @@
+<import src='/templates/comment.wxml'/>
 <view class='main'>
-  <image class='movie-img' src='{{comment.movieImg}}'></image>
-  <view class='movie-title'>{{comment.movieTitle}}</view>
-  <view class='comment'>
-    <view class='user-title'>
-      <image src='{{comment.avatar}}'></image>
-    </view>
-    <view class='content'>{{comment.content}}</view>
+  <image class='movie-img' src='{{movie.image}}'></image>
+  <view class='movie-title'>{{movie.title}}</view>
+  <template is='comment' data='{{...comment}}'/>
+  <view class='actions'>
+    <button class='btn'>收藏影评</button>
+    <button class='btn' bindtap='addComment'>写影评</button>
   </view>
 </view>

@@ -1,8 +1,15 @@
 /**app.wxss**/
+@import "/templates/comment.wxss";
+@import "/templates/movie.wxss";
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
+}
+
+view {
   box-sizing: border-box;
 }
 
@@ -11,12 +18,39 @@ page {
   font-size: 32rpx;
 }
 
-.avatar {
+.avatar.medium {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 32rpx;
+  border-radius: 50%;
+}
+
+.avatar.small {
   width: 64rpx;
   height: 64rpx;
+  margin-right: 24rpx;
   border-radius: 50%;
 }
 
 .btn-text {
   color: rgb(143, 166, 184);
+}
+
+.actions {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40rpx;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.btn {
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: rgb(143, 166, 184);
+  font-size: 28rpx;
 }

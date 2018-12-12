@@ -14,10 +14,6 @@
   font-size: 28rpx;
 }
 
-.rec-text {
-  margin-left: 20rpx;
-}
-
 .footer {
   position: fixed;
   display: flex;

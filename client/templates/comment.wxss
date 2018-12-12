@@ -1,0 +1,13 @@
+.comment {
+  margin: 30rpx 60rpx;
+  font-size: 28rpx;
+}
+
+.user-title {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  margin: 40rpx 0 0 20rpx;
+}

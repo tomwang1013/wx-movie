@@ -1,2 +1,4 @@
-<!--client/pages/comment-edit/comment-edit.wxml-->
-<text>client/pages/comment-edit/comment-edit.wxml</text>
+<view class='movie-main'>
+  <image class='movie-img' src='{{movie.image}}'></image>
+  <view class='movie-title'>{{movie.title}}</view>
+</view>

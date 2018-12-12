@@ -1,0 +1,9 @@
+<template name='comment'>
+  <view class='comment'>
+    <view class='user-title'>
+      <image class='avatar medium' src='{{avatar}}'></image>
+      <view class='username'>{{userName}}的影评</view>
+    </view>
+    <view class='content'>{{content}}</view>
+  </view>
+</template>
