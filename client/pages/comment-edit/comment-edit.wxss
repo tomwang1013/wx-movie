@@ -1,1 +1,21 @@
-/* client/pages/comment-edit/comment-edit.wxss */
+.text-comment {
+  margin: 30rpx;
+}
+
+textarea {
+  text-align: center;
+}
+
+.over-btn {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #09bb07;
+  color: #fff;
+  border-radius: 0;
+}
+
+.over-btn.button-hover {
+  opacity: 0.6;
+}

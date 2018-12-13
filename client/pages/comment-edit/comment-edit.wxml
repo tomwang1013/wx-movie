@@ -1,4 +1,9 @@
 <view class='movie-main'>
   <image class='movie-img' src='{{movie.image}}'></image>
   <view class='movie-title'>{{movie.title}}</view>
+  <view class='text-comment' wx:if='{{type == 0}}'>
+    <textarea placeholder='请输入你的评论内容...' placeholder-style='color: #888888' auto-focus='true'>
+    </textarea>
+  </view>
+  <button class='over-btn'>完成</button>
 </view>

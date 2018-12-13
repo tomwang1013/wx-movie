@@ -1,17 +1,30 @@
-<view class='container'>
-  <image src='{{comment.movieImg}}' class='movie-img'></image>
-  <view class='movie-title'>{{comment.movieTitle}}</view>
-  <navigator class='recomment' 
-             url='/pages/comment-detail/comment-detail?id={{comment.id}}'>
-    <image class='avatar medium' src='{{comment.avatar}}'></image>
-    <view class='rec-text'>{{comment.userName}}给你推荐了一部电影</view>
-  </navigator>
-</view>
-<view class='footer'>
-  <view class='btn-text'>
-    <text>热门</text>
+<block wx:if='{{logged}}'>
+  <view class='container'>
+    <image src='{{movie.image}}' class='movie-img'></image>
+    <view class='movie-title'>{{movie.title}}</view>
+    <navigator class='recomment' 
+              url='/pages/comment-detail/comment-detail?id={{comment.id}}'>
+      <image class='avatar medium' src='{{comment.avatar}}'></image>
+      <view class='rec-text'>{{comment.userName}}给你推荐了一部电影</view>
+    </navigator>
   </view>
-  <view class='btn-text'>
-    <text>我的</text>
+  <view class='footer'>
+    <view class='btn-text'>
+      <text>热门</text>
+    </view>
+    <view class='btn-text'>
+      <text>我的</text>
+    </view>
   </view>
+</block>
+<view wx:else class='no-login container'>
+  <view class='welcome'>首次使用，请点击下方按钮登录</view>
+  <button class="primary-btn login-btn"
+          wx:if='{{userInfoAuthType !== 1}}'
+          open-type="getUserInfo" 
+          bindgetuserinfo="onTapLogin">微信登录</button>
+  <button class="primary-btn login-btn"
+          wx:if='{{userInfoAuthType === 1}}'
+          open-type="openSetting" 
+          bindopensetting='onTapLogin'>授权登录</button>
 </view>

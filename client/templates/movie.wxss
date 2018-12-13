@@ -22,6 +22,6 @@
 .movie-main .movie-title {
   margin-top: 340rpx;
   text-align: center;
-  line-height: 64rpx;
+  line-height: 96rpx;
   font-weight: bold;
 }

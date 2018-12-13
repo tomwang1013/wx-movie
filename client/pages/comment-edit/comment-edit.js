@@ -6,7 +6,8 @@ Page({
    */
   data: {
     movie: null,
-    type: 0 // 0: 文字; 1: 音频
+    type: 0, // 0: 文字; 1: 音频
+    content: '' // 评论内容：可能是一段录音的url或一段文字
   },
 
   /**

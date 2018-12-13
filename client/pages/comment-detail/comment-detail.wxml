@@ -1,5 +1,5 @@
 <import src='/templates/comment.wxml'/>
-<view class='main'>
+<view class='movie-main'>
   <image class='movie-img' src='{{movie.image}}'></image>
   <view class='movie-title'>{{movie.title}}</view>
   <template is='comment' data='{{...comment}}'/>
