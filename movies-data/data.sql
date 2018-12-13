@@ -27,8 +27,8 @@ INSERT INTO `movies` (`id`, `image`, `title`, `category`, `description`) VALUES
 (14, CONCAT(@IMAGE_BASE_URL, 'p1910824340.jpg'), '死亡诗社', '剧情', '威尔顿预备学院以其沉稳凝重的教学风格和较高的升学率闻名，作为其毕业班的学生，理想就是升入名校。新学期文学老师约翰·基汀（罗宾·威廉姆斯 饰）的到来如同一阵春风，一反传统名校的严肃刻板。基汀带学生们在校史楼内聆听死亡的声音，反思生的意义 ；让男生们在绿茵场上宣读自己的理想；鼓励学生站在课桌上，用新的视角俯瞰世界。老师自由发散式的哲学思维让学生内心产生强烈的共鸣，他们渐渐学会自己思考与求索，勇敢的追问人生的路途，甚至违反门禁，成立死亡诗社，在山洞里击节而歌！基汀教授、基汀老师、基汀队长，他的教育宛若春风化雨，润物无声的留在每个人心里…'),
 (15, CONCAT(@IMAGE_BASE_URL, 'p2206088801.jpg'), '星际穿越', '剧情 / 科幻 / 冒险', '近未来的地球黄沙遍野，小麦、秋葵等基础农作物相继因枯萎病灭绝，人类不再像从前那样仰望星空，放纵想象力和灵感的迸发，而是每日在沙尘暴的肆虐下倒数着所剩不多的光景。在家务农的前NASA宇航员库珀（马修·麦康纳 Matthew McConaughey 饰）接连在女儿墨菲（麦肯吉·弗依 Mackenzie Foy 饰）的书房发现奇怪的重力场现象，随即得知在某个未知区域内前NASA成员仍秘密进行一个拯救人类的计划。多年以前土星附近出现神秘虫洞，NASA借机将数名宇航员派遣到遥远的星系寻找适合居住的星球。在布兰德教授（迈克尔·凯恩 Michael Caine 饰）的劝说下，库珀忍痛告别了女儿，和其他三名专家教授女儿艾米莉亚·布兰德（安妮·海瑟薇 Anne Hathaway 饰）、罗米利（大卫·吉雅西 David Gyasi 饰）、多伊尔（韦斯·本特利 Wes Bentley 饰）搭乘宇宙飞船前往目前已知的最有希望的三颗星球考察。他们穿越遥远的星系银河，感受了一小时七年光阴的沧海桑田，窥见了未知星球和黑洞的壮伟与神秘。在浩瀚宇宙的绝望而孤独角落，总有一份超越了时空的笃定情怀将他们紧紧相连……');
 
-DROP TABLE IF EXISTS `comment`;
-CREATE TABLE `comment` (
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -43,4 +43,4 @@ CREATE TABLE `comment` (
   KEY `movie_id` (`movie_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='影评';
 
-INSERT INTO `comment`(`user`, `user_name`, `avatar`, `movie_id`, `content`) VALUES('oD4V75bcPIrjRgVCGdwRIDTOwKVw', '王先统', 'https://wx.qlogo.cn/mmopen/vi_32/PetqTaAkoQ9zAjknVnBMEnIhgSQuE8gPDxCrHsCgaypZ76kv8kQd7ViaoooqVwCdhLtLh3DUqJqTzQSVmU7N0CQ/132', 1, '这个电影特效不错，但是故事情节很一般');
+INSERT INTO `comments`(`user`, `user_name`, `avatar`, `movie_id`, `content`) VALUES('oD4V75bcPIrjRgVCGdwRIDTOwKVw', '王先统', 'https://wx.qlogo.cn/mmopen/vi_32/PetqTaAkoQ9zAjknVnBMEnIhgSQuE8gPDxCrHsCgaypZ76kv8kQd7ViaoooqVwCdhLtLh3DUqJqTzQSVmU7N0CQ/132', 1, '这个电影特效不错，但是故事情节很一般');
