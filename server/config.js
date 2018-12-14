@@ -1,4 +1,4 @@
-let useLocal = true;
+let useLocal = false;
 
 const CONF = {
   port: '5757',
@@ -23,7 +23,7 @@ const CONF = {
     port: 3306,
     user: 'root',
     db: 'cAuth',
-    pass: 'wxeca1b1addbd4197c',
+    pass: 'wx22880cdc3d8d56ab',
     char: 'utf8mb4'
   },
 

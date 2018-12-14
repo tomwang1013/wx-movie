@@ -67,16 +67,8 @@ App({
   currentMovie: null,
 
   // 当前正在编辑的影评：进入编辑页初始化
-  currentEditComment: {
-    userName: '',
-    avatar: '',
-    content: ''
-  },
+  currentEditComment: null,
 
   // 当前影评详情页应该展示的影评
-  currentDisplayComment: {
-    userName: '',
-    avatar: '',
-    content: ''
-  }
+  currentDisplayComment: null
 })

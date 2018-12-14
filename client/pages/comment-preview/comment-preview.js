@@ -1,18 +1,28 @@
-// client/pages/comment-preview/comment-preview.js
+const util = require('../../utils/util.js');
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    movie: null,
+    comment: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      movie: app.currentMovie,
+      comment: app.currentDisplayComment
+    })
+  },
 
+  addComment() {
+    
   },
 
   /**

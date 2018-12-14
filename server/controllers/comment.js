@@ -1,8 +1,16 @@
 const DB = require('../utils/db.js');
+const { ERRORS, LOGIN_STATE } = require('wafer-node-sdk/lib/constants')
 
 module.exports = {
+  // 添加一条影评
   add: async ctx => {
+    const { loginState, userinfo: userInfo } = ctx.state.$wxInfo;
+    if (loginState === LOGIN_STATE.FAILED) {
+      ctx.throw(401, 'login required')
+    }
 
+    const comment = ctx.request.body;
+    await DB.query('INSERT INTO comments(user, user_name, avatar, movie_id, type, content) VALUES(?, ?, ?, ?, ?, ?)', [userInfo.openId, userInfo.nickName, userInfo.avatarUrl, comment.movieId, comment.type || 0, comment.content]);
   },
 
   // 随机返回一条影评：简答起见，返回最后一条

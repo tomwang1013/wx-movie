@@ -1,4 +1,8 @@
-// client/pages/comment-edit/comment-edit.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const util = require('../../utils/util.js');
+const config = require('../../config.js')
+const app = getApp();
+
 Page({
 
   /**
@@ -15,13 +19,28 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      movie: {
-        id: options.id,
-        image: options.image,
-        title: options.title
-      },
+      movie: app.currentMovie,
       type: options.type
     })
+  },
+
+  onInput(e) {
+    this.setData({
+      content: e.detail.value.trim()
+    })
+  },
+
+  previewComment() {
+    if (this.data.content) {
+      app.currentEditComment = {
+        userName: app.userInfo.nickName,
+        avatar: app.userInfo.avatarUrl,
+        content: this.data.content
+      };
+      wx.navigateTo({
+        url: '/pages/comment-preview/comment-preview'
+      })
+    }
   },
 
   /**

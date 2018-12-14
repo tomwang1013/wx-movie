@@ -34,7 +34,9 @@ Page({
             userName: data.userName,
             content: data.content
           }
-        })
+        });
+        app.currentMovie = this.data.movie;
+        app.currentDisplayComment = this.data.comment;
       },
       fail: err => { throw err }
     })

@@ -1,2 +1,10 @@
-<!--client/pages/comment-preview/comment-preview.wxml-->
-<text>client/pages/comment-preview/comment-preview.wxml</text>
+<import src='/templates/comment.wxml'/>
+<view class='movie-main'>
+  <image class='movie-img' src='{{movie.image}}'></image>
+  <view class='movie-title'>{{movie.title}}</view>
+  <template is='comment' data='{{...comment}}'/>
+  <view class='actions'>
+    <button class='btn'>重新编辑</button>
+    <button class='btn' bindtap='addComment'>发布影评</button>
+  </view>
+</view>
