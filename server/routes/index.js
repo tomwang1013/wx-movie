@@ -33,6 +33,7 @@ router.get('/message', controllers.message.get)
 router.post('/message', controllers.message.post)
 
 router.get('/comment/random', controllers.comment.random)
-router.post('/comment/add', validationMiddleware, controllers.comment.add)
+router.post('/comment', validationMiddleware, controllers.comment.add)
+router.get('/comment', controllers.comment.list)
 
 module.exports = router

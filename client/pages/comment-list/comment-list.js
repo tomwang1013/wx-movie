@@ -1,18 +1,35 @@
-// client/pages/comment-list/comment-list.js
+const util = require('../../utils/util.js');
+const app = getApp();
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    comments: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    util.showBusy('正在获取影评列表...');
+    wx.request({
+      url: config.service.commentListUrl,
+      data: { movieId: app.currentMovie.id },
+      success: res => {
+        this.setData({
+          comments: res.data.data
+        });
+        util.showSuccess('获取影评列表成功');
+      },
+      fail: err => {
+        util.showModel('获取失败', err);
+      }
+    })
   },
 
   /**

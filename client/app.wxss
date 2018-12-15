@@ -34,6 +34,7 @@ page {
 
 .btn-text {
   color: rgb(143, 166, 184);
+  font-size: 28rpx;
 }
 
 .actions {

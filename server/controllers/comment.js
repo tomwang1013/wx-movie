@@ -26,5 +26,10 @@ module.exports = {
       avatar: lastComment.avatar,
       content: lastComment.content
     }
+  },
+
+  list: async ctx => {
+    const movieId = +ctx.query.movieId;
+    ctx.state.data = await DB.query('SELECT user_name, avatar, content FROM comments WHERE movie_id = ?', movieId);
   }
 }

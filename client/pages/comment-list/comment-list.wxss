@@ -1,1 +1,32 @@
-/* client/pages/comment-list/comment-list.wxss */
+.comment-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 96rpx;
+}
+
+.comment-wrapper {
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fff;
+}
+
+.comment-wrapper:first-child {
+  margin-top: 30rpx;
+  border-top: 1px solid #e0e0e0;
+}
+
+.comment-wrapper:last-child {
+  margin-bottom: 60rpx;
+}
+
+.go-home {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 96rpx;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}

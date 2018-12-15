@@ -1,2 +1,7 @@
-<!--client/pages/comment-list/comment-list.wxml-->
-<text>client/pages/comment-list/comment-list.wxml</text>
+<import src='/templates/comment.wxml'/>
+<scroll-view scroll-y class='comment-list'>
+  <view class='comment-wrapper' wx:for='{{comments}}' wx:for-item='comment' bindtap='goDetail'>
+    <template is='comment' data='{{...comment}}'/>
+  </view>
+</scroll-view>
+<navigator url='/pages/home/home' class='go-home btn-text'>会到首页</navigator>

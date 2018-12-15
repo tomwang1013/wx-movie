@@ -1,5 +1,7 @@
 const util = require('../../utils/util.js');
 const app = getApp();
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js')
 
 Page({
 
@@ -17,12 +19,28 @@ Page({
   onLoad: function (options) {
     this.setData({
       movie: app.currentMovie,
-      comment: app.currentDisplayComment
+      comment: app.currentEditComment
     })
   },
 
   addComment() {
-    
+    util.showBusy('正在发布...');
+    qcloud.request({
+      url: config.service.addCommentUrl,
+      method: 'POST',
+      data: {
+        movieId: this.data.movie.id,
+        type: this.data.comment.type,
+        content: this.data.comment.content
+      },
+      success: res => {
+        util.showSuccess('发布成功');
+        wx.navigateTo({
+          url: '/pages/comment-list/comment-list'
+        });
+      },
+      fail: err => util.showModel('发布失败', err)
+    })
   },
 
   /**

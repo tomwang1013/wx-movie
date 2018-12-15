@@ -29,8 +29,14 @@ var config = {
         // 上传图片接口
         uploadUrl: `${host}/weapp/upload`,
 
-        // 首页获取随机影评
-      homeCommentUrl: `${host}/weapp/comment/random`
+      // 首页获取随机影评
+      homeCommentUrl: `${host}/weapp/comment/random`,
+
+      // 发布影评
+      addCommentUrl: `${host}/weapp/comment`,
+
+      // 影评列表
+      commentListUrl: `${host}/weapp/comment`,
     }
 };
 
