@@ -1,2 +1,7 @@
-<!--client/pages/hot.wxml-->
-<text>client/pages/hot.wxml</text>
+<view wx:for='{{movies}}' wx:key='{{item.id}}' class='movie'>
+  <image src='{{item.image}}' class='movie-img'></image>
+  <view class='movie-text'>
+    <view class='movie-title'>{{item.title}}</view>
+    <view class='movie-category'>{{item.category}}</view>
+  </view>
+</view>

@@ -1,2 +1,9 @@
-<!--client/pages/movie-detail/movie-detail.wxml-->
-<text>client/pages/movie-detail/movie-detail.wxml</text>
+<view class='movie-main'>
+  <image class='movie-img' src='{{movie.image}}'></image>
+  <view class='movie-title'>{{movie.title}}</view>
+  <view class='movie-desc'>{{movie.description}}</view>
+  <view class='actions'>
+    <button class='btn' bindtap='goCommentList'>查看影评</button>
+    <button class='btn' bindtap='addComment'>添加影评</button>
+  </view>
+</view>

@@ -27,7 +27,8 @@ Page({
           movie: {
             id: data.movieId,
             image: data.movieImg,
-            title: data.movieTitle
+            title: data.movieTitle,
+            description: data.movieDesc
           },
           comment: {
             avatar: data.avatar,
@@ -70,6 +71,13 @@ Page({
       fail: err => this.setData({
         userInfoAuthType: app.userInfoAuthType
       })
+    })
+  },
+
+  // 跳到详情页
+  goDetail() {
+    wx.navigateTo({
+      url: '/pages/movie-detail/movie-detail'
     })
   },
 

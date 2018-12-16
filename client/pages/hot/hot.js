@@ -1,18 +1,36 @@
-// client/pages/hot.js
+const util = require('../../utils/util.js')
+const config = require('../../config.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    movies: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    util.showBusy('正在加载热门电影...');
+    wx.request({
+      url: config.service.hotMovieList,
+      success: res => {
+        util.showSuccess('加载成功')
+        this.setData({
+          movies: res.data.data
+        })
+      },
+      fail: err => {
+        util.showModal({
+          title: '加载失败',
+          content: err,
+        });
+        setTimeout(() => wx.navigateBack(), 1500);
+      }
+    })
   },
 
   /**

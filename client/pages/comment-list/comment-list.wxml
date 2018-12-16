@@ -1,6 +1,8 @@
 <import src='/templates/comment.wxml'/>
 <scroll-view scroll-y class='comment-list'>
-  <view class='comment-wrapper' wx:for='{{comments}}' wx:for-item='comment' bindtap='goDetail'>
+  <view class='comment-wrapper' wx:for='{{comments}}'
+        wx:key='{{comment.id}}'
+        wx:for-item='comment' bindtap='goDetail'>
     <template is='comment' data='{{...comment}}'/>
   </view>
 </scroll-view>

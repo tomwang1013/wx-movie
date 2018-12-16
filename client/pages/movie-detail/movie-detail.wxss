@@ -1,1 +1,6 @@
-/* client/pages/movie-detail/movie-detail.wxss */
+.movie-desc {
+  margin: 20rpx 60rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #353535;
+}

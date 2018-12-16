@@ -1,18 +1,41 @@
-// client/pages/movie-detail/movie-detail.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const util = require('../../utils/util.js');
+const config = require('../../config.js')
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    movie: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      movie: app.currentMovie
+    })
+  },
 
+  goCommentList() {
+    wx.navigateTo({
+      url: '/pages/comment-list/comment-list',
+    })
+  },
+
+  addComment() {
+    wx.showActionSheet({
+      itemList: ['文字', '音频'],
+      success: res => {
+        wx.navigateTo({
+          url: '/pages/comment-edit/comment-edit?type=' + res.tapIndex
+        })
+      }
+    })
   },
 
   /**
