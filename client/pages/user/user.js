@@ -1,18 +1,40 @@
-// client/pages/user/user.js
+const util = require('../../utils/util.js');
+const app = getApp();
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    favorites: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '',
+    })
 
+    qcloud.request({
+      url: config.service.favoritesUrl,
+      login: true,
+      success: res => {
+        this.setData({
+          favorites: res.data.data
+        })
+      },
+      fail: err => {
+        util.showModel('获取失败', err)
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**

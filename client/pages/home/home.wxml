@@ -10,7 +10,7 @@
   </view>
   <view class='footer'>
     <navigator url='/pages/hot/hot' class='btn-text'>热门</navigator>
-    <view class='btn-text'>我的</view>
+    <navigator url='/pages/user/user' class='btn-text'>我的</navigator>
   </view>
 </block>
 <view wx:else' class='no-login container'>

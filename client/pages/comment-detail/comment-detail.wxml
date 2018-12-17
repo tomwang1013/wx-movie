@@ -4,7 +4,7 @@
   <view class='movie-title'>{{movie.title}}</view>
   <template is='comment' data='{{...comment}}'/>
   <view class='actions'>
-    <button class='btn'>收藏影评</button>
+    <button class='btn' loading='{{loading}}' bindtap='addToFavorite'>收藏影评</button>
     <button class='btn' bindtap='addComment'>写影评</button>
   </view>
 </view>

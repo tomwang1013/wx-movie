@@ -31,6 +31,7 @@ Page({
             description: data.movieDesc
           },
           comment: {
+            id: data.commentId,
             avatar: data.avatar,
             userName: data.userName,
             content: data.content

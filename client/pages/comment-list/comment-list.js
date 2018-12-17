@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.showBusy('正在获取影评列表...');
+    util.showBusy('获取影评列表...');
     wx.request({
       url: config.service.commentListUrl,
       data: { movieId: app.currentMovie.id },
@@ -24,11 +24,20 @@ Page({
         this.setData({
           comments: res.data.data
         });
-        util.showSuccess('获取影评列表成功');
+        util.showSuccess('获取成功');
       },
       fail: err => {
         util.showModel('获取失败', err);
       }
+    })
+  },
+
+  // 跳转到影评详情
+  goDetail(e) {
+    const index = e.currentTarget.dataset.index;
+    app.currentDisplayComment = this.data.comments[index];
+    wx.navigateTo({
+      url: '/pages/comment-detail/comment-detail',
     })
   },
 

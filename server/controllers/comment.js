@@ -15,7 +15,7 @@ module.exports = {
 
   // 随机返回一条影评：简答起见，返回最后一条
   random: async ctx => {
-    const lastComment = (await DB.query('SELECT user_name, avatar, content, movie_id FROM comments ORDER BY id DESC LIMIT 1'))[0];
+    const lastComment = (await DB.query('SELECT id, user_name, avatar, content, movie_id FROM comments ORDER BY id DESC LIMIT 1'))[0];
     const movie = (await DB.query('SELECT title, image, description FROM movies WHERE id = ?', [lastComment.movie_id]))[0];
 
     ctx.state.data = {
@@ -23,6 +23,7 @@ module.exports = {
       movieImg: movie.image,
       movieTitle: movie.title,
       movieDesc: movie.description,
+      commentId: lastComment.id,
       userName: lastComment.user_name,
       avatar: lastComment.avatar,
       content: lastComment.content
@@ -33,5 +34,26 @@ module.exports = {
   list: async ctx => {
     const movieId = +ctx.query.movieId;
     ctx.state.data = await DB.query('SELECT id, user_name, avatar, content FROM comments WHERE movie_id = ?', movieId);
+  },
+
+  // 收藏影评
+  addToFavorite: async ctx => {
+    const { loginState, userinfo: userInfo } = ctx.state.$wxInfo;
+    if (loginState === LOGIN_STATE.FAILED) {
+      ctx.throw(401, 'login required')
+    }
+
+    const commentId = +ctx.request.body.commentId;
+    await DB.query('INSERT INTO favorites(user, comment_id) VALUES(?, ?)', [userInfo.openId, commentId]);
+  },
+
+  // 收藏的影评列表
+  favorites: async ctx => {
+    const { loginState, userinfo: userInfo } = ctx.state.$wxInfo;
+    if (loginState === LOGIN_STATE.FAILED) {
+      ctx.throw(401, 'login required')
+    }
+
+    ctx.state.data = await DB.query('SELECT user_name, avatar, type, content, title, image FROM favorites INNER JOIN comments ON favorites.comment_id = comments.id INNER JOIN movies on comments.movie_id = movies.id WHERE favorites.user = ?', [userInfo.openId]);
   }
 }

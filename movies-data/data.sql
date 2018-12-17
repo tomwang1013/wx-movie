@@ -44,3 +44,12 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='影评';
 
 INSERT INTO `comments`(`user`, `user_name`, `avatar`, `movie_id`, `content`) VALUES('oD4V75bcPIrjRgVCGdwRIDTOwKVw', '王先统', 'https://wx.qlogo.cn/mmopen/vi_32/PetqTaAkoQ9zAjknVnBMEnIhgSQuE8gPDxCrHsCgaypZ76kv8kQd7ViaoooqVwCdhLtLh3DUqJqTzQSVmU7N0CQ/132', 1, '这个电影特效不错，但是故事情节很一般');
+
+DROP TABLE IF EXISTS `favorites`;
+CREATE TABLE `favorites` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='收藏的影评';

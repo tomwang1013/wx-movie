@@ -1,4 +1,6 @@
 const util = require('../../utils/util.js');
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js')
 const app = getApp();
 
 Page({
@@ -8,7 +10,7 @@ Page({
    */
   data: {
     movie: null,
-    comment: null
+    comment: null,
   },
 
   addComment() {
@@ -29,6 +31,28 @@ Page({
     this.setData({
       movie: app.currentMovie,
       comment: app.currentDisplayComment
+    })
+  },
+
+  // 收藏
+  addToFavorite() {
+    wx.showLoading({
+      title: '正在收藏...',
+    })
+    qcloud.request({
+      url: config.service.addToFavoriteUrl,
+      method: 'POST',
+      login: true,
+      data: { commentId: this.data.comment.id },
+      success: res => {
+        util.showSuccess('收藏成功')
+      },
+      fail: ctx => {
+        util.showModel('收藏失败', err);
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
     })
   },
 

@@ -1,1 +1,43 @@
-/* client/pages/user/user.wxss */
+.title {
+  line-height: 240rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: orange;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  margin: 30rpx;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.favorite:first-child {
+  margin-top: 0;
+}
+
+.movie-img {
+  width: 210rpx;
+  height: 311rpx;
+}
+
+.movie-title {
+  margin: 30rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.comment-content {
+  margin: 30rpx;
+  font-size: 28rpx;
+  color: #353535;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin: 30rpx;
+  font-size: 28rpx;
+  color: #353535;
+}

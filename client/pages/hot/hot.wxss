@@ -7,8 +7,8 @@
 }
 
 .movie-img {
-  width: 270rpx;
-  height: 400rpx;
+  width: 210rpx;
+  height: 311rpx;
 }
 
 .movie-title {

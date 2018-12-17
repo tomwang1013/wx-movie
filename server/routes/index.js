@@ -36,6 +36,8 @@ router.post('/message', controllers.message.post)
 router.get('/comment/random', controllers.comment.random)
 router.post('/comment', validationMiddleware, controllers.comment.add)
 router.get('/comment', controllers.comment.list)
+router.post('/comment/favorite', validationMiddleware, controllers.comment.addToFavorite)
+router.get('/comment/favorite', validationMiddleware, controllers.comment.favorites)
 
 // 电影
 router.get('/movie/hot', controllers.movie.hot)

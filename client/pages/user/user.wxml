@@ -1,2 +1,12 @@
-<!--client/pages/user/user.wxml-->
-<text>client/pages/user/user.wxml</text>
+<view class='title'>收藏的影评</view>
+<view wx:for='{{favorites}}' wx:key='{{index}}' class='favorite'>
+  <image src='{{item.image}}' class='movie-img'></image>
+  <view class='right-text'>
+    <view class='movie-title'>{{item.title}}</view>
+    <view class='comment-content'>{{item.content}}</view>
+    <view class='user'>
+      <image class='avatar small' src='{{item.avatar}}'></image>
+      <text class='user-name'>{{item.user_name}}</text>
+    </view>
+  </view>
+</view>

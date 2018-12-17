@@ -23,6 +23,10 @@ Page({
     })
   },
 
+  reEdit() {
+    wx.navigateBack()
+  },
+
   addComment() {
     util.showBusy('正在发布...');
     qcloud.request({
