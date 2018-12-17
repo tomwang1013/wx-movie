@@ -1,5 +1,7 @@
 .movie-desc {
   margin: 20rpx 60rpx;
+  max-height: 400rpx;
+  overflow: auto;
   font-size: 28rpx;
   line-height: 1.6;
   color: #353535;

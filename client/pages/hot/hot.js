@@ -1,5 +1,6 @@
 const util = require('../../utils/util.js')
 const config = require('../../config.js')
+const app = getApp();
 
 Page({
 
@@ -30,6 +31,14 @@ Page({
         });
         setTimeout(() => wx.navigateBack(), 1500);
       }
+    })
+  },
+
+  goDetail(e) {
+    console.log(11, e)
+    const selectedId = e.currentTarget.dataset.movieId;
+    wx.navigateTo({
+      url: '/pages/movie-detail/movie-detail?movieId=' + selectedId,
     })
   },
 

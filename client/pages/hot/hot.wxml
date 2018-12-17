@@ -1,5 +1,5 @@
-<view wx:for='{{movies}}' wx:key='{{item.id}}' class='movie'>
-  <image src='{{item.image}}' class='movie-img'></image>
+<view wx:for='{{movies}}' wx:key='{{item.id}}' data-movie-id='{{item.id}}' class='movie' bindtap='goDetail'>
+  <image src='{{item.image}}' mode='scaleToFill' class='movie-img'></image>
   <view class='movie-text'>
     <view class='movie-title'>{{item.title}}</view>
     <view class='movie-category'>{{item.category}}</view>

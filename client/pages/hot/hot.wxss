@@ -1,5 +1,6 @@
 .movie {
   display: flex;
+  align-items: center;
   margin: 30rpx;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -8,7 +9,6 @@
 .movie-img {
   width: 270rpx;
   height: 400rpx;
-  margin-right: 30rpx;
 }
 
 .movie-title {

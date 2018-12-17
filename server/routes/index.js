@@ -39,5 +39,6 @@ router.get('/comment', controllers.comment.list)
 
 // 电影
 router.get('/movie/hot', controllers.movie.hot)
+router.get('/movie/:id', controllers.movie.detail)
 
 module.exports = router
