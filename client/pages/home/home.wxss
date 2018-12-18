@@ -18,11 +18,20 @@
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: space-around;
   left: 0;
   right: 0;
   bottom: 0;
   height: 96rpx;
   background-color: #fff;
   border-top: 1px solid #ccc;
+}
+
+.nav {
+  flex: 1;
+  line-height: 96rpx;
+  text-align: center;
+}
+
+.recomment.navigator-hover {
+  background-color: transparent;
 }

@@ -72,7 +72,7 @@ App({
           qcloud.login({
             success: res => {
               this.userInfo = res;
-              success();
+              success();              
             },
             fail: err => { throw err }
           })
