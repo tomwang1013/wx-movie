@@ -28,7 +28,9 @@ Page({
   },
 
   addComment() {
-    util.showBusy('正在发布...');
+    wx.showLoading({
+      title: '正在发布...',
+    })
     qcloud.request({
       url: config.service.addCommentUrl,
       method: 'POST',
@@ -38,12 +40,12 @@ Page({
         content: this.data.comment.content
       },
       success: res => {
-        util.showSuccess('发布成功');
         wx.navigateTo({
           url: '/pages/comment-list/comment-list'
         });
       },
-      fail: err => util.showModel('发布失败', err)
+      fail: err => util.showModel('发布失败', err),
+      complete: () => wx.hideLoading()
     })
   },
 

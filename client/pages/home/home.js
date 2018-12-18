@@ -9,16 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfoAuthType: -1,
-    userInfo: null,
     movie: {},
-    comment: {}
+    comment: {},
+    initialized: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  getRandomComment(complete) {
     wx.request({
       url: config.service.homeCommentUrl,
       success: res => {
@@ -40,17 +36,16 @@ Page({
         app.currentMovie = this.data.movie;
         app.currentDisplayComment = this.data.comment;
       },
-      fail: err => { throw err }
+      fail: err => { throw err },
+      complete: complete
     })
   },
 
-  onTapLogin() {
-    app.login({
-      success: res => this.setData({
-        userInfoAuthType: app.userInfoAuthType,
-        userInfo: app.userInfo
-      })
-    })
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    
   },
 
   /**
@@ -64,15 +59,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    app.checkSession({
-      success: res => this.setData({
-        userInfoAuthType: app.userInfoAuthType,
-        userInfo: app.userInfo,
-      }),
-      fail: err => this.setData({
-        userInfoAuthType: app.userInfoAuthType
-      })
+    wx.showLoading({
+      title: '',
     })
+
+    if (!app.userInfo) {
+      app.checkSession({
+        success: res => {
+          this.getRandomComment(() => {
+            wx.hideLoading();
+            this.setData({ initialized: true })
+          })
+        },
+        fail: err => {
+          wx.navigateTo({
+            url: '/pages/login/login',
+          })
+        }
+      })
+    } else {
+      this.getRandomComment(() => {
+        wx.hideLoading();
+        this.setData({ initialized: true })
+      })
+    }
   },
 
   // 跳到详情页

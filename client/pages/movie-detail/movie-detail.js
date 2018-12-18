@@ -17,17 +17,19 @@ Page({
    */
   onLoad: function (options) {
     if (options.movieId) {
-      util.showBusy('正在获取电影详情...')
+      wx.showLoading({
+        title: '',
+      })
       wx.request({
         url: `${config.service.host}/weapp/movie/${options.movieId}`,
         success: res => {
-          util.showSuccess('获取成功')
           this.setData({ movie: res.data.data[0] })
         },
         fail: err => {
           util.showModel('获取失败', err)
           setTimeout(() => wx.navigateBack(), 1500)
-        }
+        },
+        complete: () => wx.hideLoading()
       })
     } else {
       this.setData({

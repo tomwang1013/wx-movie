@@ -16,7 +16,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.showBusy('获取影评列表...');
+    wx.showLoading({
+      title: '',
+    })
+
     wx.request({
       url: config.service.commentListUrl,
       data: { movieId: app.currentMovie.id },
@@ -24,11 +27,11 @@ Page({
         this.setData({
           comments: res.data.data
         });
-        util.showSuccess('获取成功');
       },
       fail: err => {
         util.showModel('获取失败', err);
-      }
+      },
+      complete: () => wx.hideLoading()
     })
   },
 

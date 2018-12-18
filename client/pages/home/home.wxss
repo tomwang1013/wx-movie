@@ -26,22 +26,3 @@
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
-
-.no-login {
-  padding-top: 200rpx;
-}
-
-.welcome {
-  margin: 64rpx 0;
-  color: #353535;
-}
-
-.login-btn {
-  width: 700rpx;
-  background-color: #09bb07;
-  color: #fff;
-}
-
-.login-btn.button-hover {
-  opacity: 0.6;
-}

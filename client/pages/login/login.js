@@ -1,5 +1,3 @@
-const util = require('../../utils/util.js')
-const config = require('../../config.js')
 const app = getApp();
 
 Page({
@@ -8,41 +6,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    movies: []
+    userInfoAuthType: -1,
+    userInfo: null
+  },
+
+  onTapLogin() {
+    app.login({
+      success: res => {
+        this.setData({
+          userInfoAuthType: app.userInfoAuthType,
+          userInfo: app.userInfo
+        });
+
+        if (app.userInfo) {
+          // 登录成功，跳转到前一个页面
+          wx.navigateBack({
+            delta: 1
+          });
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '',
-    })
 
-    wx.request({
-      url: config.service.hotMovieList,
-      success: res => {
-        this.setData({
-          movies: res.data.data
-        })
-      },
-      fail: err => {
-        util.showModal({
-          title: '加载失败',
-          content: err,
-        });
-        setTimeout(() => wx.navigateBack(), 1500);
-      },
-      complete: () => wx.hideLoading()
-    })
-  },
-
-  goDetail(e) {
-    console.log(11, e)
-    const selectedId = e.currentTarget.dataset.movieId;
-    wx.navigateTo({
-      url: '/pages/movie-detail/movie-detail?movieId=' + selectedId,
-    })
   },
 
   /**
@@ -56,7 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

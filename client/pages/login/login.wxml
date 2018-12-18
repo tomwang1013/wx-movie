@@ -1,0 +1,11 @@
+<view class='no-login container'>
+  <view class='welcome'>请先登录：</view>
+  <button class="primary-btn login-btn"
+          wx:if='{{userInfoAuthType !== 1}}'
+          open-type="getUserInfo" 
+          bindgetuserinfo="onTapLogin">微信登录</button>
+  <button class="primary-btn login-btn"
+          wx:if='{{userInfoAuthType === 1}}'
+          open-type="openSetting" 
+          bindopensetting='onTapLogin'>授权登录</button>
+</view>

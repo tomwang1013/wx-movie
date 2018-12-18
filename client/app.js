@@ -11,6 +11,27 @@ App({
     qcloud.setLoginUrl(config.service.loginUrl);
   },
 
+  // 判断用户登录状态
+  // checkLoginStatus() {
+  //   if (app.userInfo) {
+  //     return true;
+  //   }
+
+  //   const session = qcloud.Session.get();
+  //   if (!session) {
+  //     return false;
+  //   }
+
+  //   const lastLoginTime = session.time;
+  //   if (lastLoginTime + config.sessionTimeout < Math.floor(Date.now())) {
+  //     return false;
+  //   }
+
+  //   this.userInfo = session.userinfo;
+  //   this.userInfoAuthType = AUTHORIZED;
+  //   return true;
+  // },
+
   checkSession({ success, fail }) {
     wx.checkSession({
       success: res => {
