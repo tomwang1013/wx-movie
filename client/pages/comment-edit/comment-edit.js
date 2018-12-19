@@ -11,7 +11,8 @@ Page({
   data: {
     movie: null,
     type: 0, // 0: 文字; 1: 音频
-    content: '' // 评论内容：可能是一段录音的url或一段文字
+    content: '', // 评论内容：可能是一段录音的url或一段文字,
+    recording: false
   },
 
   /**
@@ -22,6 +23,14 @@ Page({
       movie: app.currentMovie,
       type: options.type
     })
+    this.recorderManager = wx.getRecorderManager();
+
+    // this.innerAudioContext = wx.createInnerAudioContext();
+    // this.innerAudioContext.onError((res) => {
+    //   // 播放音频失败的回调
+    // })
+    // this.innerAudioContext.src = this.data.src;  // 这里可以是录音的临时路径
+    // this.innerAudioContext.play()
   },
 
   onInput(e) {
@@ -41,6 +50,43 @@ Page({
         url: '/pages/comment-preview/comment-preview'
       })
     }
+  },
+
+  record() {
+    if (this.data.recording) {
+      this.recorderManager.stop();
+      this.recorderManager.onStop(res => {
+        console.log(res.tempFilePath)
+        wx.uploadFile({
+          url: config.service.uploadUrl,
+          filePath: res.tempFilePath,
+          name: 'file',
+          success: res => {
+            console.log(111, res.data)
+            // this.setData({
+            //   content: res.tempFilePath
+            // })
+          },
+          fail: err => {
+            console.error('上传失败：', err)
+          }
+        })
+      })
+    } else {
+      this.recorderManager.start({
+        format: 'mp3'
+      });
+      this.recorderManager.onError(err => {
+        wx.showModal({
+          title: 'record error',
+          content: err,
+        })
+      })
+    }
+
+    this.setData({
+      recording: !this.data.recording
+    })
   },
 
   /**

@@ -5,5 +5,8 @@
     <textarea bindinput='onInput' placeholder='请输入你的评论内容...' placeholder-style='color: #888888' auto-focus='true'>
     </textarea>
   </view>
+  <view class='audio-comment' wx:if='{{type == 1}}'>
+    <button class='btn' bindtap='record'>{{recording ? 'recording' : 'start record'}}</button>
+  </view> 
   <button class='over-btn' bindtap='previewComment'>完成</button>
 </view>
