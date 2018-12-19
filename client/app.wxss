@@ -1,6 +1,7 @@
 /**app.wxss**/
 @import "/templates/comment.wxss";
 @import "/templates/movie.wxss";
+@import "/templates/play.wxss";
 
 .container {
   display: flex;

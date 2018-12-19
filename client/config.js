@@ -2,7 +2,7 @@
  * 小程序配置文件
  */
 
-let useLocal = false;
+let useLocal = true;
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
 var host = 'https://rgqt3qkv.qcloud.la';

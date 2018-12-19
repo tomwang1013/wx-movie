@@ -30,6 +30,7 @@ Page({
             id: data.commentId,
             avatar: data.avatar,
             userName: data.userName,
+            type: data.type,
             content: data.content
           }
         });

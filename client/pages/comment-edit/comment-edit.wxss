@@ -23,3 +23,11 @@ textarea {
 .movie-main {
   bottom: 120rpx;
 }
+
+.audio-comment {
+  margin-top: 120rpx;
+}
+
+.record-btn {
+  margin-bottom: 40rpx;
+}

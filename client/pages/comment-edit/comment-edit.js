@@ -12,7 +12,9 @@ Page({
     movie: null,
     type: 0, // 0: 文字; 1: 音频
     content: '', // 评论内容：可能是一段录音的url或一段文字,
-    recording: false
+    audioDuration: 0, // 录音时长
+    recording: false,
+    playing: false
   },
 
   /**
@@ -23,27 +25,63 @@ Page({
       movie: app.currentMovie,
       type: options.type
     })
-    this.recorderManager = wx.getRecorderManager();
 
-    // this.innerAudioContext = wx.createInnerAudioContext();
-    // this.innerAudioContext.onError((res) => {
-    //   // 播放音频失败的回调
-    // })
-    // this.innerAudioContext.src = this.data.src;  // 这里可以是录音的临时路径
-    // this.innerAudioContext.play()
+    this.recorderManager = wx.getRecorderManager();
+    this.recorderManager.onError(err => {
+      wx.showModal({
+        title: '录音失败',
+        content: err,
+      })
+    });
+    this.recorderManager.onStop(res => {
+      this.uploadAudio(res.tempFilePath)
+    })
+
+    this.innerAudioContext = wx.createInnerAudioContext();
+    this.innerAudioContext.onError(err => {
+      wx.showModal({
+        title: '播放失败',
+        content: err,
+      })
+    })
   },
 
+  // 上传录音
+  uploadAudio(tempFilePath) {
+    wx.uploadFile({
+      url: config.service.uploadUrl,
+      filePath: tempFilePath,
+      name: 'file',
+      success: res => {
+        const data = JSON.parse(res.data).data
+        this.innerAudioContext.src = data.imgUrl;
+        this.innerAudioContext.onCanplay(() => {
+          this.setData({
+            content: data.imgUrl,
+            audioDuration: this.innerAudioContext.duration
+          })
+        })
+      },
+      fail: err => {
+        console.error('上传失败：', err)
+      }
+    })
+  },
+
+  // 文字输入
   onInput(e) {
     this.setData({
       content: e.detail.value.trim()
     })
   },
 
+  // 预览评论
   previewComment() {
     if (this.data.content) {
       app.currentEditComment = {
         userName: app.userInfo.nickName,
         avatar: app.userInfo.avatarUrl,
+        type: this.data.type,
         content: this.data.content
       };
       wx.navigateTo({
@@ -52,36 +90,27 @@ Page({
     }
   },
 
+  // 播放或停止播放
+  play() {
+    if (this.data.playing) {
+      this.createInnerAudioContext.stop();
+    } else {
+      this.innerAudioContext.play();
+    }
+
+    this.setData({
+      playing: !this.data.playing
+    })
+  },
+
+  // 录制或停止录制
   record() {
     if (this.data.recording) {
       this.recorderManager.stop();
-      this.recorderManager.onStop(res => {
-        console.log(res.tempFilePath)
-        wx.uploadFile({
-          url: config.service.uploadUrl,
-          filePath: res.tempFilePath,
-          name: 'file',
-          success: res => {
-            console.log(111, res.data)
-            // this.setData({
-            //   content: res.tempFilePath
-            // })
-          },
-          fail: err => {
-            console.error('上传失败：', err)
-          }
-        })
-      })
     } else {
       this.recorderManager.start({
         format: 'mp3'
       });
-      this.recorderManager.onError(err => {
-        wx.showModal({
-          title: 'record error',
-          content: err,
-        })
-      })
     }
 
     this.setData({

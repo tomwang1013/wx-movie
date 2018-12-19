@@ -15,7 +15,7 @@ module.exports = {
 
   // 随机返回一条影评：简答起见，返回最后一条
   random: async ctx => {
-    const lastComment = (await DB.query('SELECT id, user_name, avatar, content, movie_id FROM comments ORDER BY id DESC LIMIT 1'))[0];
+    const lastComment = (await DB.query('SELECT id, user_name, avatar, type, content, movie_id FROM comments ORDER BY id DESC LIMIT 1'))[0];
     const movie = (await DB.query('SELECT title, image, description FROM movies WHERE id = ?', [lastComment.movie_id]))[0];
 
     ctx.state.data = {
@@ -26,6 +26,7 @@ module.exports = {
       commentId: lastComment.id,
       userName: lastComment.user_name,
       avatar: lastComment.avatar,
+      type: lastComment.type,
       content: lastComment.content
     }
   },
@@ -33,7 +34,7 @@ module.exports = {
   // 影评列表
   list: async ctx => {
     const movieId = +ctx.query.movieId;
-    ctx.state.data = await DB.query('SELECT id, user_name, avatar, content FROM comments WHERE movie_id = ?', movieId);
+    ctx.state.data = await DB.query('SELECT id, user_name, avatar, type, content FROM comments WHERE movie_id = ?', movieId);
   },
 
   // 收藏影评

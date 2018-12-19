@@ -1,9 +1,13 @@
+<import src='/templates/play.wxml'/>
 <template name='comment'>
   <view class='comment'>
     <view class='user-title'>
       <image class='avatar medium' src='{{avatar}}'></image>
       <view class='username'>{{userName}}的影评</view>
     </view>
-    <view class='content'>{{content}}</view>
+    <view class='content'>
+      <view wx:if='{{type == 0}}'>{{content}}</view>
+      <template is='play' wx:else data='{{duration: 15}}'/>
+    </view>
   </view>
 </template>

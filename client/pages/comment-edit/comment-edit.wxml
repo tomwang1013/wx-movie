@@ -1,3 +1,4 @@
+<import src='/templates/play.wxml'/>
 <view class='movie-main'>
   <image class='movie-img' src='{{movie.image}}'></image>
   <view class='movie-title'>{{movie.title}}</view>
@@ -5,8 +6,12 @@
     <textarea bindinput='onInput' placeholder='请输入你的评论内容...' placeholder-style='color: #888888' auto-focus='true'>
     </textarea>
   </view>
-  <view class='audio-comment' wx:if='{{type == 1}}'>
-    <button class='btn' bindtap='record'>{{recording ? 'recording' : 'start record'}}</button>
+  <view class='container audio-comment' wx:if='{{type == 1}}'>
+    <button class='btn record-btn' bindtap='record'>
+      {{recording ? '停止录音' : '开始录音'}}
+    </button>
+    <template wx-if='{{!!content}}' is='play' 
+              data='{{duration: audioDuration}}'/>
   </view> 
   <button class='over-btn' bindtap='previewComment'>完成</button>
 </view>

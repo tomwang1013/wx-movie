@@ -1,4 +1,4 @@
-let useLocal = false;
+let useLocal = true;
 
 const CONF = {
   port: '5757',
@@ -36,7 +36,9 @@ const CONF = {
     // Bucket 名称
     fileBucket: 'qcloudtest',
     // 文件夹
-    uploadFolder: ''
+    uploadFolder: '',
+
+    mimetypes: ['image/jpeg', 'image/jp2', 'image/jpm', 'image/jpx', 'image/gif', 'image/bmp', 'image/png', 'audio/mpeg', 'audio/mp3', 'audio/m4a', 'video/webm', 'application/pdf']
   },
 
   // 上传图片需要用
