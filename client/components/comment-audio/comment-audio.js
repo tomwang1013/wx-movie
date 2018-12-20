@@ -15,28 +15,40 @@ Component({
     playing: false  // 是否正在播放
   },
 
-  created() {
-    this.innerAudioContext = wx.createInnerAudioContext();
-    this.innerAudioContext.src = this.properties.audioFile;
-    
-    this.innerAudioContext.onPlay(() => {
-      console.log('开始播放...')
-      this.setData({
-        playing: true
+  lifetimes: {
+    ready() {
+      this.innerAudioContext = wx.createInnerAudioContext();
+      this.innerAudioContext.src = this.properties.audioFile;
+
+      // 开始播放
+      this.innerAudioContext.onPlay(() => {
+        this.setData({
+          playing: true
+        })
       })
-    })
-    this.innerAudioContext.onStop(() => {
-      console.log('播放结束')
-      this.setData({
-        playing: false
+
+      // 播放完了自然停止
+      this.innerAudioContext.onEnded(() => {
+        this.setData({
+          playing: false
+        })
       })
-    })
-    this.innerAudioContext.onError(err => {
-      wx.showModal({
-        title: '播放失败',
-        content: JSON.stringify(err),
+
+      // 手动停止
+      this.innerAudioContext.onStop(() => {
+        this.setData({
+          playing: false
+        })
       })
-    })
+
+      // 发生错误
+      this.innerAudioContext.onError(err => {
+        wx.showModal({
+          title: '播放失败',
+          content: JSON.stringify(err),
+        })
+      })
+    }
   },
 
   /**
