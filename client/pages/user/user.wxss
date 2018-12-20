@@ -13,13 +13,14 @@
   border: 1px solid #ddd;
 }
 
-.favorite:first-child {
+.favorite.first {
   margin-top: 0;
 }
 
 .movie-img {
   width: 210rpx;
   height: 311rpx;
+  flex: 0 0 auto;
 }
 
 .movie-title {

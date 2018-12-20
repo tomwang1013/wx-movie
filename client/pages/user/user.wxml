@@ -1,5 +1,6 @@
 <view class='title'>收藏的影评</view>
-<view wx:for='{{favorites}}' wx:key='{{index}}' class='favorite'>
+<view wx:for='{{favorites}}' wx:key='{{index}}' 
+      class='favorite {{index === 0 ? "first" : ""}}'>
   <image src='{{item.image}}' class='movie-img'></image>
   <view class='right-text'>
     <view class='movie-title'>{{item.title}}</view>
