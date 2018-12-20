@@ -10,12 +10,12 @@ module.exports = {
     }
 
     const comment = ctx.request.body;
-    await DB.query('INSERT INTO comments(user, user_name, avatar, movie_id, type, content) VALUES(?, ?, ?, ?, ?, ?)', [userInfo.openId, userInfo.nickName, userInfo.avatarUrl, comment.movieId, comment.type || 0, comment.content]);
+    await DB.query('INSERT INTO comments(user, user_name, avatar, movie_id, type, content, duration) VALUES(?, ?, ?, ?, ?, ?, ?)', [userInfo.openId, userInfo.nickName, userInfo.avatarUrl, comment.movieId, comment.type || 0, comment.content, comment.duration]);
   },
 
   // 随机返回一条影评：简答起见，返回最后一条
   random: async ctx => {
-    const lastComment = (await DB.query('SELECT id, user_name, avatar, type, content, movie_id FROM comments ORDER BY id DESC LIMIT 1'))[0];
+    const lastComment = (await DB.query('SELECT id, user_name, avatar, type, content, movie_id, duration FROM comments ORDER BY id DESC LIMIT 1'))[0];
     const movie = (await DB.query('SELECT title, image, description FROM movies WHERE id = ?', [lastComment.movie_id]))[0];
 
     ctx.state.data = {
@@ -27,14 +27,15 @@ module.exports = {
       userName: lastComment.user_name,
       avatar: lastComment.avatar,
       type: lastComment.type,
-      content: lastComment.content
+      content: lastComment.content,
+      duration: lastComment.duration
     }
   },
 
   // 影评列表
   list: async ctx => {
     const movieId = +ctx.query.movieId;
-    ctx.state.data = await DB.query('SELECT id, user_name, avatar, type, content FROM comments WHERE movie_id = ?', movieId);
+    ctx.state.data = await DB.query('SELECT id, user_name, avatar, type, content, duration FROM comments WHERE movie_id = ?', movieId);
   },
 
   // 收藏影评
@@ -55,6 +56,6 @@ module.exports = {
       ctx.throw(401, 'login required')
     }
 
-    ctx.state.data = await DB.query('SELECT user_name, avatar, type, content, title, image FROM favorites INNER JOIN comments ON favorites.comment_id = comments.id INNER JOIN movies on comments.movie_id = movies.id WHERE favorites.user = ?', [userInfo.openId]);
+    ctx.state.data = await DB.query('SELECT user_name, avatar, type, content, duration, title, image FROM favorites INNER JOIN comments ON favorites.comment_id = comments.id INNER JOIN movies on comments.movie_id = movies.id WHERE favorites.user = ?', [userInfo.openId]);
   }
 }

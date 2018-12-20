@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "我的"
+  "navigationBarTitleText": "我的",
+  "usingComponents": {
+    "comment-audio": "/components/comment-audio/comment-audio"
+  }
 }

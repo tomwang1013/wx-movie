@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "影评详情"
+  "navigationBarTitleText": "影评详情",
+  "usingComponents": {
+    "comment-audio": "/components/comment-audio/comment-audio"
+  }
 }

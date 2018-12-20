@@ -37,6 +37,7 @@ CREATE TABLE `comments` (
   `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '内容类型：0文字 1音频',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duration` int(11) DEFAULT 0 COMMENT '录制音频时长单位秒',
   `rank` tinyint(1) DEFAULT 3,
   PRIMARY KEY (`id`),
   KEY `user` (`user`) USING BTREE,

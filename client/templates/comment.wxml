@@ -1,4 +1,3 @@
-<import src='/templates/play.wxml'/>
 <template name='comment'>
   <view class='comment'>
     <view class='user-title'>
@@ -7,7 +6,7 @@
     </view>
     <view class='content'>
       <view wx:if='{{type == 0}}'>{{content}}</view>
-      <template is='play' wx:else data='{{duration: 15}}'/>
+      <comment-audio wx:else duration='{{duration}}' audio-file='{{content}}'/>
     </view>
   </view>
 </template>

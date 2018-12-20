@@ -1,0 +1,19 @@
+.auto-play {
+  display: flex;
+  align-items: center;
+  width: 320rpx;
+  height: 60rpx;
+  padding-left: 30rpx;
+  line-height: 60rpx;
+  color: #000;
+  font-size: 28rpx;
+  background-color: #ccc;
+  border: 1px solid #bbb;
+  border-radius: 4rpx;
+}
+
+.play-icon {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}

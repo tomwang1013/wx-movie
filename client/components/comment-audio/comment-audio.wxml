@@ -1,0 +1,4 @@
+<view class='auto-play' bindtap='play'>
+  <image class='play-icon' src='/images/icons8-play-button-circled-30.png'></image>
+  <text class='duration'>{{duration + 's'}}</text>
+</view>

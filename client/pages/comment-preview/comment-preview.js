@@ -37,7 +37,8 @@ Page({
       data: {
         movieId: this.data.movie.id,
         type: this.data.comment.type,
-        content: this.data.comment.content
+        content: this.data.comment.content,
+        duration: this.data.comment.duration
       },
       success: res => {
         wx.navigateTo({

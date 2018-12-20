@@ -12,9 +12,7 @@ Page({
     movie: null,
     type: 0, // 0: 文字; 1: 音频
     content: '', // 评论内容：可能是一段录音的url或一段文字,
-    audioDuration: 0, // 录音时长
-    recording: false,
-    playing: false
+    recording: false
   },
 
   /**
@@ -34,16 +32,9 @@ Page({
       })
     });
     this.recorderManager.onStop(res => {
+      this.audioDuration = Math.floor(res.duration / 1000);
       this.uploadAudio(res.tempFilePath)
-    })
-
-    this.innerAudioContext = wx.createInnerAudioContext();
-    this.innerAudioContext.onError(err => {
-      wx.showModal({
-        title: '播放失败',
-        content: err,
-      })
-    })
+    });
   },
 
   // 上传录音
@@ -54,13 +45,9 @@ Page({
       name: 'file',
       success: res => {
         const data = JSON.parse(res.data).data
-        this.innerAudioContext.src = data.imgUrl;
-        this.innerAudioContext.onCanplay(() => {
-          this.setData({
-            content: data.imgUrl,
-            audioDuration: this.innerAudioContext.duration
-          })
-        })
+        this.setData({
+          content: data.imgUrl
+        });
       },
       fail: err => {
         console.error('上传失败：', err)
@@ -82,25 +69,13 @@ Page({
         userName: app.userInfo.nickName,
         avatar: app.userInfo.avatarUrl,
         type: this.data.type,
-        content: this.data.content
+        content: this.data.content,
+        duration: this.audioDuration
       };
       wx.navigateTo({
         url: '/pages/comment-preview/comment-preview'
       })
     }
-  },
-
-  // 播放或停止播放
-  play() {
-    if (this.data.playing) {
-      this.createInnerAudioContext.stop();
-    } else {
-      this.innerAudioContext.play();
-    }
-
-    this.setData({
-      playing: !this.data.playing
-    })
   },
 
   // 录制或停止录制

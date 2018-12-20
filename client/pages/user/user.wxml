@@ -3,7 +3,10 @@
   <image src='{{item.image}}' class='movie-img'></image>
   <view class='right-text'>
     <view class='movie-title'>{{item.title}}</view>
-    <view class='comment-content'>{{item.content}}</view>
+    <view class='comment-content'>
+      <text wx:if='{{item.type == 0}}'>{{item.content}}</text>
+      <comment-audio wx:else audio-file='{{item.content}}' duration='{{item.duration}}'/>
+    </view>  
     <view class='user'>
       <image class='avatar small' src='{{item.avatar}}'></image>
       <text class='user-name'>{{item.user_name}}</text>
