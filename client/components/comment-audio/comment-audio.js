@@ -18,10 +18,23 @@ Component({
   created() {
     this.innerAudioContext = wx.createInnerAudioContext();
     this.innerAudioContext.src = this.properties.audioFile;
+    
+    this.innerAudioContext.onPlay(() => {
+      console.log('开始播放...')
+      this.setData({
+        playing: true
+      })
+    })
+    this.innerAudioContext.onStop(() => {
+      console.log('播放结束')
+      this.setData({
+        playing: false
+      })
+    })
     this.innerAudioContext.onError(err => {
       wx.showModal({
         title: '播放失败',
-        content: err,
+        content: JSON.stringify(err),
       })
     })
   },
@@ -36,10 +49,6 @@ Component({
       } else {
         this.innerAudioContext.play();
       }
-
-      this.setData({
-        playing: !this.data.playing
-      })
     }
   }
 })
