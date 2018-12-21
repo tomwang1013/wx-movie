@@ -19,6 +19,10 @@ Page({
       title: '',
     })
 
+    this.getMovies(true)
+  },
+
+  getMovies(onload) {
     wx.request({
       url: config.service.hotMovieList,
       success: res => {
@@ -33,7 +37,13 @@ Page({
         });
         setTimeout(() => wx.navigateBack(), 1500);
       },
-      complete: () => wx.hideLoading()
+      complete: () => {
+        if (onload) {
+          wx.hideLoading()
+        } else {
+          wx.stopPullDownRefresh();
+        }
+      }
     })
   },
 
@@ -77,7 +87,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getMovies(false);
   },
 
   /**

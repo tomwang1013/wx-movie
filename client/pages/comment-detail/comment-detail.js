@@ -11,44 +11,81 @@ Page({
   data: {
     movie: null,
     comment: null,
+    hasFavorited: false
   },
 
   addComment() {
-    wx.showActionSheet({
-      itemList: ['文字', '音频'],
+    wx.showLoading({
+      title: '',
+    })
+
+    qcloud.request({
+      url: config.service.checkCommentUrl,
+      data: {
+        movieId: this.data.movie.id
+      },
       success: res => {
-        wx.navigateTo({
-          url: '/pages/comment-edit/comment-edit?type=' + res.tapIndex
-        })
+        wx.hideLoading();
+        
+        const data = res.data.data;
+        if (data) {
+          this.setData({ comment: data });
+          wx.showToast({ title: '你已经评论过了',})
+        } else {
+          wx.showActionSheet({
+            itemList: ['文字', '音频'],
+            success: res => {
+              wx.navigateTo({
+                url: '/pages/comment-edit/comment-edit?type=' + res.tapIndex
+              })
+            }
+          })
+        }
       }
     })
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.favoriteKey = `favorite_${app.userInfo.openId}_${app.currentDisplayComment.id}`
+    let hasFavorited = !!wx.getStorageSync(this.favoriteKey);
+
     this.setData({
       movie: app.currentMovie,
-      comment: app.currentDisplayComment
+      comment: app.currentDisplayComment,
+      hasFavorited 
     })
   },
 
   // 收藏
   addToFavorite() {
     wx.showLoading({
-      title: '正在收藏...',
-    })
+      title: this.data.hasFavorited ? '正在取消收藏...' : '正在收藏...',
+    });
+
     qcloud.request({
       url: config.service.addToFavoriteUrl,
       method: 'POST',
       login: true,
-      data: { commentId: this.data.comment.id },
+      data: { commentId: this.data.comment.id, add: !this.data.hasFavorited },
       success: res => {
-        util.showSuccess('收藏成功')
+        // 缓存结果
+        if (this.data.hasFavorited) {
+          wx.setStorageSync(this.favoriteKey, '')
+        } else {
+          wx.setStorageSync(this.favoriteKey, this.data.comment.id)
+        }
+
+        this.setData({
+          hasFavorited: !this.data.hasFavorited
+        })
+        util.showSuccess('操作成功');
       },
       fail: ctx => {
-        util.showModel('收藏失败', err);
+        util.showModel('操作失败', err);
       },
       complete: () => {
         wx.hideLoading()

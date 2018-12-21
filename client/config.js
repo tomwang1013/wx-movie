@@ -48,6 +48,9 @@ var config = {
 
       // 收藏列表
       favoritesUrl: `${host}/weapp/comment/favorite`,
+
+      // 判断用户是否已经评论过
+      checkCommentUrl: `${host}/weapp/comment/check-status`,
     }
 };
 

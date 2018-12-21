@@ -38,6 +38,7 @@ router.post('/comment', validationMiddleware, controllers.comment.add)
 router.get('/comment', controllers.comment.list)
 router.post('/comment/favorite', validationMiddleware, controllers.comment.addToFavorite)
 router.get('/comment/favorite', validationMiddleware, controllers.comment.favorites)
+router.get('/comment/check-status', validationMiddleware, controllers.comment.checkComment)
 
 // 电影
 router.get('/movie/hot', controllers.movie.hot)

@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    movie: {},
-    comment: {},
+    movie: null,
+    comment: null,
     initialized: false
   },
 
@@ -19,23 +19,27 @@ Page({
       url: config.service.homeCommentUrl,
       success: res => {
         const data = res.data.data;
-        this.setData({
-          movie: {
-            id: data.movieId,
-            image: data.movieImg,
-            title: data.movieTitle,
-            description: data.movieDesc
-          },
-          comment: {
-            id: data.commentId,
-            avatar: data.avatar,
-            userName: data.userName,
-            type: data.type,
-            content: data.content
-          }
-        });
-        app.currentMovie = this.data.movie;
-        app.currentDisplayComment = this.data.comment;
+
+        if (data) {
+          this.setData({
+            movie: {
+              id: data.movieId,
+              image: data.movieImg,
+              title: data.movieTitle,
+              description: data.movieDesc
+            },
+            comment: {
+              id: data.commentId,
+              avatar: data.avatar,
+              userName: data.userName,
+              type: data.type,
+              content: data.content,
+              duration: data.duration
+            }
+          });
+          app.currentMovie = this.data.movie;
+          app.currentDisplayComment = this.data.comment;
+        }
       },
       fail: err => { throw err },
       complete: complete

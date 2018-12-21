@@ -46,7 +46,13 @@ module.exports = {
     }
 
     const commentId = +ctx.request.body.commentId;
-    await DB.query('INSERT INTO favorites(user, comment_id) VALUES(?, ?)', [userInfo.openId, commentId]);
+    const add = ctx.request.body.add;
+
+    if (add) {
+      await DB.query('INSERT INTO favorites(user, comment_id) VALUES(?, ?)', [userInfo.openId, commentId]);
+    } else {
+      await DB.query('DELETE FROM favorites WHERE user = ? AND comment_id = ?', [userInfo.openId, commentId]);
+    }
   },
 
   // 收藏的影评列表
@@ -57,5 +63,17 @@ module.exports = {
     }
 
     ctx.state.data = await DB.query('SELECT user_name, avatar, type, content, duration, title, image FROM favorites INNER JOIN comments ON favorites.comment_id = comments.id INNER JOIN movies on comments.movie_id = movies.id WHERE favorites.user = ?', [userInfo.openId]);
+  },
+
+  checkComment: async ctx => {
+    const { loginState, userinfo: userInfo } = ctx.state.$wxInfo;
+    if (loginState === LOGIN_STATE.FAILED) {
+      ctx.throw(401, 'login required')
+    }
+
+    const movieId = +ctx.query.movieId;
+    const comments = await DB.query('SELECT * FROM comments WHERE movie_id = ? AND user = ?', [movieId, userInfo.openId])
+
+    ctx.state.data = comments[0]
   }
 }

@@ -35,3 +35,7 @@
 .recomment.navigator-hover {
   background-color: transparent;
 }
+
+.no-comment {
+  line-height: 480rpx;
+}

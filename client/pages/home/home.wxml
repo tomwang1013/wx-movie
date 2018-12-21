@@ -1,11 +1,16 @@
 <view class='container' wx:if='{{initialized}}'>
-  <image src='{{movie.image}}' bindtap='goDetail' class='movie-img'></image>
-  <view class='movie-title'>{{movie.title}}</view>
-  <navigator class='recomment' 
-             url='/pages/comment-detail/comment-detail?id={{comment.id}}'>
-    <image class='avatar medium' src='{{comment.avatar}}'></image>
-    <view class='rec-text'>{{comment.userName}}给你推荐了一部电影</view>
-  </navigator>
+  <block wx:if='{{movie}}'>
+    <image src='{{movie.image}}' bindtap='goDetail' class='movie-img'></image>
+    <view class='movie-title'>{{movie.title}}</view>
+    <navigator class='recomment' 
+              url='/pages/comment-detail/comment-detail?id={{comment.id}}'>
+      <image class='avatar medium' src='{{comment.avatar}}'></image>
+      <view class='rec-text'>{{comment.userName}}给你推荐了一部电影</view>
+    </navigator>
+  </block>
+  <view wx:else class='no-comment'>
+    暂无影评，打开热门电影去评论吧！
+  </view>
 </view>
 <view class='footer' wx:if='{{initialized}}'>
   <navigator url='/pages/hot/hot' class='btn-text nav'>热门</navigator>
