@@ -9,13 +9,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    favorites: []
+    favorites: [],
+    mine: [],
+    selectedTab: 'favorites',
+    userInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      userInfo: app.userInfo
+    })
+    
     wx.showLoading({
       title: '',
     })
@@ -25,7 +32,8 @@ Page({
       login: true,
       success: res => {
         this.setData({
-          favorites: res.data.data
+          favorites: res.data.data.favorites,
+          mine: res.data.data.mine
         })
       },
       fail: err => {
@@ -35,6 +43,12 @@ Page({
         wx.hideLoading()
       }
     })
+  },
+
+  onTabClick(e) {
+    this.setData({
+      selectedTab: e.target.dataset.name
+    });
   },
 
   /**

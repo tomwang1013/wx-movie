@@ -1,8 +1,17 @@
-.title {
-  line-height: 240rpx;
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tab {
+  line-height: 96rpx;
+  flex: 1;
   text-align: center;
-  font-size: 28rpx;
-  color: orange;
+  border-bottom: 4rpx solid transparent;
+}
+
+.tab.active {
+  border-bottom-color: rgb(33, 33, 209);
 }
 
 .favorite {
@@ -11,10 +20,6 @@
   margin: 30rpx;
   background-color: #fff;
   border: 1px solid #ddd;
-}
-
-.favorite.first {
-  margin-top: 0;
 }
 
 .movie-img {

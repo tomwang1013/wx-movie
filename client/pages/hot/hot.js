@@ -48,7 +48,6 @@ Page({
   },
 
   goDetail(e) {
-    console.log(11, e)
     const selectedId = e.currentTarget.dataset.movieId;
     wx.navigateTo({
       url: '/pages/movie-detail/movie-detail?movieId=' + selectedId,

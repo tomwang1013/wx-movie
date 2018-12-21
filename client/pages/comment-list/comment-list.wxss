@@ -35,3 +35,9 @@
 .go-home.navigator-hover {
   background: #f0f0f0;
 }
+
+.no-comments {
+  line-height: 480rpx;
+  text-align: center;
+  color: #888;
+}

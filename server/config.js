@@ -1,4 +1,4 @@
-let useLocal = false;
+let useLocal = true;
 
 const CONF = {
   port: '5757',

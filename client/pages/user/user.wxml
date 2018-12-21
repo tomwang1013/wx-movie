@@ -1,6 +1,8 @@
-<view class='title'>收藏的影评</view>
-<view wx:for='{{favorites}}' wx:key='{{index}}' 
-      class='favorite {{index === 0 ? "first" : ""}}'>
+<view class='tabs' bindtap='onTabClick'>
+  <view data-name='favorites' class='tab {{selectedTab === "favorites" ? "active" : ""}}'>收藏的影评</view>
+  <view data-name='mine' class='tab {{selectedTab === "mine" ? "active" : ""}}'>我的影评</view>
+</view>
+<view wx:for='{{selectedTab === "favorites" ? favorites : mine}}' wx:key='{{index}}' class='favorite'>
   <image src='{{item.image}}' class='movie-img'></image>
   <view class='right-text'>
     <view class='movie-title'>{{item.title}}</view>
@@ -9,8 +11,8 @@
       <comment-audio wx:else audio-file='{{item.content}}' duration='{{item.duration}}'/>
     </view>  
     <view class='user'>
-      <image class='avatar small' src='{{item.avatar}}'></image>
-      <text class='user-name'>{{item.user_name}}</text>
+      <image class='avatar small' src='{{selectedTab === "favorites" ? item.avatar : userInfo.avatarUrl}}'></image>
+      <text class='user-name'>{{selectedTab === "favorites" ?  item.user_name : userInfo.nickName}}</text>
     </view>
   </view>
 </view>

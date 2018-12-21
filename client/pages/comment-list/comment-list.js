@@ -22,7 +22,7 @@ Page({
 
     wx.request({
       url: config.service.commentListUrl,
-      data: { movieId: app.currentMovie.id },
+      data: { movieId: options.movieId || app.currentMovie.id },
       success: res => {
         this.setData({
           comments: res.data.data

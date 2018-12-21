@@ -62,7 +62,15 @@ module.exports = {
       ctx.throw(401, 'login required')
     }
 
-    ctx.state.data = await DB.query('SELECT user_name, avatar, type, content, duration, title, image FROM favorites INNER JOIN comments ON favorites.comment_id = comments.id INNER JOIN movies on comments.movie_id = movies.id WHERE favorites.user = ?', [userInfo.openId]);
+    const [favorites, mine] = await Promise.all([
+      DB.query('SELECT user_name, avatar, type, content, duration, title, image FROM favorites INNER JOIN comments ON favorites.comment_id = comments.id INNER JOIN movies on comments.movie_id = movies.id WHERE favorites.user = ?', [userInfo.openId]),
+      DB.query('SELECT type, content, duration, title, image FROM comments INNER JOIN movies ON comments.movie_id = movies.id WHERE comments.user = ?', [userInfo.openId])
+    ]);
+
+    ctx.state.data = {
+      favorites,
+      mine
+    }
   },
 
   checkComment: async ctx => {

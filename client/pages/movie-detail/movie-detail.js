@@ -16,6 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.options = options;
     if (options.movieId) {
       wx.showLoading({
         title: '',
@@ -40,7 +41,7 @@ Page({
 
   goCommentList() {
     wx.navigateTo({
-      url: '/pages/comment-list/comment-list',
+      url: '/pages/comment-list/comment-list?movieId=' + this.options.movieId,
     })
   },
 
