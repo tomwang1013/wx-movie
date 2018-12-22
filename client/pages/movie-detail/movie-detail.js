@@ -24,7 +24,8 @@ Page({
       wx.request({
         url: `${config.service.host}/weapp/movie/${options.movieId}`,
         success: res => {
-          this.setData({ movie: res.data.data[0] })
+          this.setData({ movie: res.data.data[0] });
+          app.currentMovie = this.data.movie;
         },
         fail: err => {
           util.showModel('获取失败', err)
@@ -41,17 +42,40 @@ Page({
 
   goCommentList() {
     wx.navigateTo({
-      url: '/pages/comment-list/comment-list?movieId=' + this.options.movieId,
+      url: '/pages/comment-list/comment-list?movieId=' + (this.options.movieId || ''),
     })
   },
 
   addComment() {
-    wx.showActionSheet({
-      itemList: ['文字', '音频'],
+    wx.showLoading({
+      title: '',
+    })
+
+    qcloud.request({
+      url: config.service.checkCommentUrl,
+      data: {
+        movieId: this.data.movie.id
+      },
       success: res => {
-        wx.navigateTo({
-          url: '/pages/comment-edit/comment-edit?type=' + res.tapIndex
-        })
+        wx.hideLoading();
+
+        const data = res.data.data;
+        if (data.id) {
+          app.currentDisplayComment = data;
+          wx.showToast({ title: '你已经评论过了', })
+          wx.navigateTo({
+            url: '/pages/comment-detail/comment-detail',
+          })
+        } else {
+          wx.showActionSheet({
+            itemList: ['文字', '音频'],
+            success: res => {
+              wx.navigateTo({
+                url: '/pages/comment-edit/comment-edit?type=' + res.tapIndex
+              })
+            }
+          })
+        }
       }
     })
   },

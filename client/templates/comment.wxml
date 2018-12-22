@@ -2,7 +2,7 @@
   <view class='comment'>
     <view class='user-title'>
       <image class='avatar medium' src='{{avatar}}'></image>
-      <view class='username'>{{userName}}的影评</view>
+      <view class='username'>{{user_name}}的影评</view>
     </view>
     <view class='content'>
       <view wx:if='{{type == 0}}'>{{content}}</view>

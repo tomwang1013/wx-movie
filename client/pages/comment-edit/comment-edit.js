@@ -66,7 +66,7 @@ Page({
   previewComment() {
     if (this.data.content) {
       app.currentEditComment = {
-        userName: app.userInfo.nickName,
+        user_name: app.userInfo.nickName,
         avatar: app.userInfo.avatarUrl,
         type: this.data.type,
         content: this.data.content,

@@ -31,7 +31,7 @@ Page({
             comment: {
               id: data.commentId,
               avatar: data.avatar,
-              userName: data.userName,
+              user_name: data.userName,
               type: data.type,
               content: data.content,
               duration: data.duration

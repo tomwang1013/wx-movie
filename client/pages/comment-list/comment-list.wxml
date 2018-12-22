@@ -9,4 +9,4 @@
   </view>
 </scroll-view>
 <view wx:else class='no-comments'>暂无影评</view>
-<navigator url='/pages/home/home' class='go-home btn-text'>会到首页</navigator>
+<navigator url='/pages/home/home' class='go-home btn-text'>回到首页</navigator>
